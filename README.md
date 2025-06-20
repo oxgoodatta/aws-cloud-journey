@@ -15,6 +15,8 @@ Manual setup of two EC2 instances running Apache web servers:
 - Security group configurations and debugging
 - Real-world issues resolved (e.g., inaccessible site due to SG mismatch)
 
+- ![Screenshots](./ec2-setup/Screenshots)
+
 → **Status:** ✅ Completed  
 → [See EC2 folder](./ec2-setup)
 
