@@ -20,14 +20,13 @@ Manual setup of two EC2 instances running Apache web servers:
 → **Status:** ✅ Completed  
 → [See EC2 folder](./ec2-setup)
 
-### 🛠️ `s3-website-hosting/` *(Coming soon)*
+[s3-static-website](./s3-static-website/README.md)
 Hosting a static website directly from an S3 bucket:
 - Uploading HTML files
 - Setting bucket policies
 - Making content publicly accessible
 - Enabling static hosting and testing
-
-→ **Status:** 🧱 In Progress
+→ Status: ✅ Completed
 
 ---
 
