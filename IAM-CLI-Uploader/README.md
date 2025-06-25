@@ -10,6 +10,8 @@ This folder documents the creation and usage of a limited-permission IAM user th
 - Successfully uploaded files to S3 using the CLI with this user
 - Verified that the user could not perform any other action like `s3 ls`
 
+[Screenshots]('./Screenshot(211).png')
+
 ### 🔐 IAM Policy Used
 ```json
 {
