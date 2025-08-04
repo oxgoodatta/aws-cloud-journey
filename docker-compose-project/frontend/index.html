@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frontend + Backend</title>
+</head>
+<body>
+  <h1>Frontend served by NGINX</h1>
+  <p id="backend-message">Waiting for backend response...</p>
+
+  <script>
+    fetch('/api/message')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('backend-message').textContent = data.message;
+      })
+      .catch(error => {
+        document.getElementById('backend-message').textContent = 'Failed to fetch message.';
+        console.error('Error:', error);
+      });
+  </script>
+</body>
+</html>
