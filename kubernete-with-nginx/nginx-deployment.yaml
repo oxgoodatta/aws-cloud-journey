@@ -17,6 +17,14 @@ spec:
           image: nginx:latest
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-html
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: nginx-html
+          configMap:
+            name: nginx-config
 ---
 apiVersion: v1
 kind: Service
@@ -29,5 +37,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30007
   type: NodePort
+
