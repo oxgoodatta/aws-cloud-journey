@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fashionforward-app
+  labels:
+    app: fashionforward-app
+spec:
+  replicas: 3 # Start with 3 instances/pods for high availability
+  selector:
+    matchLabels:
+      app: fashionforward-app
+  template:
+    metadata:
+      labels:
+        app: fashionforward-app
+    spec:
+      containers:
+      - name: fashionforward-app
+        image: fashionforward-app:v1 # Use YOUR image here
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000 # Matches the EXPOSE in Dockerfile
+        resources:
+          requests:
+            cpu: "100m" # This container requests 0.1 CPU core
+            memory: "128Mi" # And 128MB of RAM
+          limits:
+            cpu: "200m" # It is hard-limited to 0.2 CPU core
+            memory: "256Mi" # And 256MB of RAM
+        livenessProbe: # Kubernetes will check if the app is alive
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe: # Kubernetes will check if the app is ready to receive traffic
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10

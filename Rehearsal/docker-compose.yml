@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  backend:
+    image: python:3.9-alpine
+    container_name: backend
+    command: sh -c "pip install flask && python /app/app.py"
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+
+  alpine-client:
+    image: alpine
+    container_name: alpine-client
+    command: sh -c "apk add curl && sleep infinity"
+    depends_on:
+      - backend

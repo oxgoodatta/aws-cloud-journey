@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: backend }
+  template:
+    metadata:
+      labels: { app: backend }
+    spec:
+      containers:
+        - name: backend
+          image: demo-backend:dev
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          # If you added CORS in Flask, great. With Ingress same-origin we won't need it.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: demo
+spec:
+  selector: { app: backend }
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: ClusterIP

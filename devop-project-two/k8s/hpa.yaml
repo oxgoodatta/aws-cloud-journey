@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: fashionforward-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: fashionforward-app # This HPA controls our Deployment
+  minReplicas: 2 # Never scale below 2 pods
+  maxReplicas: 10 # Never scale above 10 pods
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50 # Target: average CPU usage across all Pods is 50%

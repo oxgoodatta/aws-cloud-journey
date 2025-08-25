@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fashionforward-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx" # This assumes an NGINX Ingress Controller is installed
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: fashionforward-service
+            port:
+              number: 80
